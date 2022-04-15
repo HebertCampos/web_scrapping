@@ -22,8 +22,16 @@ def conexaoSoup():
     return soup
 
 def getHrefs():
-    soup = conexaoSoup()
     links_anuncios = []
     for a_href in soup.findAll(class_="kQcyga", href=True):
         links_anuncios.append(a_href['href'])
     return links_anuncios
+
+def nextPage():
+    new_page = []
+    for a_href in soup.findAll(class_="lfGTeV", href=True):
+        new_page.append(a_href['href'])
+    return new_page
+    
+soup = conexaoSoup()
+    
