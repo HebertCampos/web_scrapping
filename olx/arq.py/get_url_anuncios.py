@@ -1,17 +1,15 @@
 from urllib.request import urlopen, Request
 from urllib.error import URLError, HTTPError
 from bs4 import BeautifulSoup
+import time
+from get_info_anuncios import *
 
-def url():
-    url = "https://al.olx.com.br/alagoas/autos-e-pecas/motos"
+
+def conexaoSoup(url):
+    url = url
     headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Safari/537.36'}
-    url_headers = [url,headers]
-    return url_headers
-
-def conexaoSoup():
-    urL = url()
     try:
-        req = Request(urL[0], headers= urL[1])
+        req = Request(url, headers= headers)
         response = urlopen(req)
         html = response.read()
     except HTTPError as e:
@@ -21,7 +19,8 @@ def conexaoSoup():
     soup = BeautifulSoup(html, 'html.parser')
     return soup
 
-def getHrefs():
+def getHrefs(soup):
+    soup = soup
     links_anuncios = []
     for a_href in soup.findAll(class_="kQcyga", href=True):
         links_anuncios.append(a_href['href'])
@@ -31,7 +30,33 @@ def nextPage():
     new_page = []
     for a_href in soup.findAll(class_="lfGTeV", href=True):
         new_page.append(a_href['href'])
-    return new_page
+    return new_page[0]
+
+def infoAnuncio(soup):
+    soup = soup
+    getPreco(soup)
+    getTitulo(soup)
+    getDescricao(soup)
+    getDetalhes(soup)
     
-soup = conexaoSoup()
+def info():
+    info = []
+    info.append(getPreco())
+    info.append(getTitulo())
+    info.append(getDescricao())
+    detalhes =getDetalhes()
+    for i in detalhes:
+        info.append(detalhes[i])
+    
+
+
+url = "https://al.olx.com.br/alagoas/autos-e-pecas/motos"  
+soup = conexaoSoup(url)
+# for i in range(3):
+#     time.sleep(5)
+#     print(getHrefs(soup))
+#     print(nextPage())
+#     soup = conexaoSoup(nextPage())
+# print(getHrefs(soup))
+
     
