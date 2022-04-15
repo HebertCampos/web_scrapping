@@ -20,3 +20,10 @@ def conexaoSoup():
         print(e.reason)
     soup = BeautifulSoup(html, 'html.parser')
     return soup
+
+def getHrefs():
+    soup = conexaoSoup()
+    links_anuncios = []
+    for a_href in soup.findAll(class_="kQcyga", href=True):
+        links_anuncios.append(a_href['href'])
+    return links_anuncios
