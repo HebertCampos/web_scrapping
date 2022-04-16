@@ -47,16 +47,3 @@ def info():
     detalhes =getDetalhes()
     for i in detalhes:
         info.append(detalhes[i])
-    
-
-
-url = "https://al.olx.com.br/alagoas/autos-e-pecas/motos"  
-soup = conexaoSoup(url)
-# for i in range(3):
-#     time.sleep(5)
-#     print(getHrefs(soup))
-#     print(nextPage())
-#     soup = conexaoSoup(nextPage())
-# print(getHrefs(soup))
-
-    
