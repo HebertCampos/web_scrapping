@@ -26,7 +26,8 @@ def getHrefs(soup):
         links_anuncios.append(a_href['href'])
     return links_anuncios
 
-def nextPage():
+def nextPage(soup):
+    soup = soup
     new_page = []
     for a_href in soup.findAll(class_="lfGTeV", href=True):
         new_page.append(a_href['href'])
