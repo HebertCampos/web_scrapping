@@ -31,3 +31,13 @@ def getAnunciante(*soup):
     anunciante = [r.string for r in anunciante_html]
     return anunciante
 
+def anuncio(soup):
+    anuncio = []
+    anuncio = getDetalhes(soup)
+    anuncio.append(getPreco(soup))
+    anuncio.append(getTitulo(soup))
+    anuncio.append(getDescricao(soup))
+    
+    return anuncio
+    
+    
