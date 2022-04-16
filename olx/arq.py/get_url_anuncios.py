@@ -33,18 +33,3 @@ def nextPage(soup):
         new_page.append(a_href['href'])
     return new_page[0]
 
-def infoAnuncio(soup):
-    soup = soup
-    getPreco(soup)
-    getTitulo(soup)
-    getDescricao(soup)
-    getDetalhes(soup)
-    
-def info():
-    info = []
-    info.append(getPreco())
-    info.append(getTitulo())
-    info.append(getDescricao())
-    detalhes =getDetalhes()
-    for i in detalhes:
-        info.append(detalhes[i])
