@@ -42,6 +42,7 @@ def anuncio(soup, url_anuncio):
     anuncio.append(getTitulo(soup))
     anuncio.append(getDescricao(soup))
     anuncio.append(url_anuncio)
+    anuncio.append('AL')
     
     return anuncio
     
