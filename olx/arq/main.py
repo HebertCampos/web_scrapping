@@ -3,16 +3,17 @@ from get_info_anuncios import *
 
 import sqlite3
 
-con = sqlite3.connect(r'olx_motos.db')
+con = sqlite3.connect(r'ws/olx/db/olx_motos.db')
 
 cur = con.cursor()
 
 
 def getAnuncios():
-    url = "https://al.olx.com.br/alagoas/autos-e-pecas/motos" 
+    # url = "https://al.olx.com.br/alagoas/autos-e-pecas/motos" 
+    url = "https://se.olx.com.br/sergipe/autos-e-pecas/motos"
     soup = conexaoSoup(url)
     a = []
-    for i in range(1):
+    for j in range(1):
         hrefs = getHrefs(soup)
         for i in range(len(hrefs)):
             b = []
@@ -21,8 +22,8 @@ def getAnuncios():
             if(len(b[0])==12):
                 a.append(b[0])
         soup = conexaoSoup(nextPage(soup))
+        print(j)
     return a
-
 
 sql_insert = 'insert into anuncios values (?,?,?,?,?,?,?,?,?,?,?,?)'
 recset = getAnuncios()
