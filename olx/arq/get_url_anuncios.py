@@ -14,7 +14,7 @@ def conexaoSoup(url):
         html = response.read()
     except HTTPError as e:
         print(e.status, e.reason)
-    except URLerror as e:
+    except URLError as e:
         print(e.reason)
     soup = BeautifulSoup(html, 'html.parser')
     return soup
