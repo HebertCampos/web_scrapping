@@ -4,11 +4,15 @@ from bs4 import BeautifulSoup
 def getPreco(soup):
     s = soup
     preco_html = s.select('.sc-1wimjbb-2')
-    preco = [r.string for r in preco_html]
+    preco = []
+    for r in preco_html:
+        preco.append(r.string)
     if preco[0] != None:
-        preco = [r.string.split() for r in preco_html]
+        if '.' in preco[0]:
+            preco[0] = preco[0].replace('.', '').split()
+        else:preco[0] = preco[0].split()
         return preco[0][1]
-    else: return preco[0]
+    else: return 0
 
 def getTitulo(soup):
     s = soup
@@ -42,7 +46,7 @@ def anuncio(soup, url_anuncio):
     anuncio.append(getTitulo(soup))
     anuncio.append(getDescricao(soup))
     anuncio.append(url_anuncio)
-    anuncio.append('AL')
+    anuncio.append('SE')
     
     return anuncio
     
